@@ -9,12 +9,12 @@
         _isNotHidden: function(field) {
             //We want dropdown fields, iteration, release, state?
             var allowedFields = ['Iteration','Release'];
-            console.log('field', field.name, field);
-            if (field && Ext.Array.contains(allowedFields, field.name)){
+
+            if (field  && Ext.Array.contains(allowedFields, field.name)){
                 return true;
             }
 
-            if (field && field.attributeDefinition &&
+            if (field && !field.hidden && field.attributeDefinition &&
                 field.attributeDefinition.AttributeType === 'STRING'){
                 return true;
             }
