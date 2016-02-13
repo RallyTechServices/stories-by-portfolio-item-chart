@@ -1,8 +1,8 @@
 #Story Distribution by Portfolio Item
 
 Column graph that shows the count of Leaf Node User Stories accepted within the selected date range. 
-The User Stories are bucketed by Portfolio Item Ancestor (of the type configured in the settings) and, if configured,
-a selected field value.  
+The User Stories are bucketed by Portfolio Item great-Grandparent (3rd level Portfolio Item) and, if configured,
+a selected group field value.  
 
 If a User Story does not have an ancestor of the configured type or if the User Story's ancestor is outside of the 
 currently selected project scope, then it will not be represented in the chart.  
@@ -11,7 +11,10 @@ currently selected project scope, then it will not be represented in the chart.
 
 ![ScreenShot](/images/story-distribution-by-portfolio-item-by-iteration.png)
 
-
+In the configuration settings, a user may select more than one group field.  If this is selected, then the values of all of those fields will be 
+set with an "OR" so that the last value is the value used for bucketing.  The purpose of this functionality is to allow for different fields 
+with the same value sets to be bucketed and compared together.  The assumption when using this functionality is that only one of the 
+fields that is selected is populated at any time.  
 
 ## Development Notes
 
