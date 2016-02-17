@@ -13,13 +13,13 @@ Ext.define('Rally.technicalservices.Settings',{
             labelAlign: 'right',
             fieldLabel: 'Group Field',
             multiSelect: true,
-            allowNoEntry: true
+            allowNoEntry: true,
+            context: { project: null } //want to show all fields in workspace, even if they aren't scoped for hte current project.
 
         }];
     },
     fetchPortfolioItemTypes: function(){
         var deferred = Ext.create('Deft.Deferred');
-        console.log('fetchPortfolioItemTypes', new Date());
         var store = Ext.create('Rally.data.wsapi.Store', {
             model: 'TypeDefinition',
             fetch: ['TypePath', 'Ordinal','Name'],
@@ -42,7 +42,6 @@ Ext.define('Rally.technicalservices.Settings',{
         });
         store.load({
             callback: function(records, operation, success){
-                console.log('fetchPortfolioItemTypes callback', new Date());
                 if (success){
                     var portfolioItemTypes = new Array(records.length);
                     _.each(records, function(d){

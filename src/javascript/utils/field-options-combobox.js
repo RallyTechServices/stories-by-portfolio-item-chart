@@ -14,7 +14,7 @@
                 return true;
             }
 
-            if (field && !field.hidden && field.attributeDefinition &&
+            if (field && field.attributeDefinition &&
                 field.attributeDefinition.AttributeType === 'STRING'){
                 return true;
             }

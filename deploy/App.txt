@@ -3,11 +3,11 @@
 <head>
     <title>Story Distribution by Portfolio Item</title>
     <!--  (c) 2015 Rally Software Development Corp.  All Rights Reserved. -->
-    <!--  Build Date: Sat Feb 13 2016 14:35:39 GMT-0700 (MST) -->
+    <!--  Build Date: Wed Feb 17 2016 09:07:00 GMT-0700 (MST) -->
     
     <script type="text/javascript">
-        var APP_BUILD_DATE = "Sat Feb 13 2016 14:35:39 GMT-0700 (MST)";
-        var CHECKSUM = 15037864798;
+        var APP_BUILD_DATE = "Wed Feb 17 2016 09:07:00 GMT-0700 (MST)";
+        var CHECKSUM = 15005525941;
     </script>
     
     <script type="text/javascript" src="/apps/2.0/sdk.js"></script>
@@ -192,7 +192,7 @@ Ext.define('Rally.technicalservices.Logger',{
                 return true;
             }
 
-            if (field && !field.hidden && field.attributeDefinition &&
+            if (field && field.attributeDefinition &&
                 field.attributeDefinition.AttributeType === 'STRING'){
                 return true;
             }
@@ -235,13 +235,13 @@ Ext.define('Rally.technicalservices.Settings',{
             labelAlign: 'right',
             fieldLabel: 'Group Field',
             multiSelect: true,
-            allowNoEntry: true
+            allowNoEntry: true,
+            context: { project: null } //want to show all fields in workspace, even if they aren't scoped for hte current project.
 
         }];
     },
     fetchPortfolioItemTypes: function(){
         var deferred = Ext.create('Deft.Deferred');
-        console.log('fetchPortfolioItemTypes', new Date());
         var store = Ext.create('Rally.data.wsapi.Store', {
             model: 'TypeDefinition',
             fetch: ['TypePath', 'Ordinal','Name'],
@@ -264,7 +264,6 @@ Ext.define('Rally.technicalservices.Settings',{
         });
         store.load({
             callback: function(records, operation, success){
-                console.log('fetchPortfolioItemTypes callback', new Date());
                 if (success){
                     var portfolioItemTypes = new Array(records.length);
                     _.each(records, function(d){
